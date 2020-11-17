@@ -1,8 +1,5 @@
 services:
 - docker
-env:
-  - DOCKER_USER=sabattle
-  - secure: "emr0hzS7lb8FPcp5SQdtkl3X7LHWS75eCpgbjWfoGvnSfzb5BFMvg3+3bFaD4SlCUlmAavSoOyamixieEXIc5I+w5hM8t7AbXjFkgqysvSyNiVhWkk3EhUqyfdlYFXXym0B3uEuj0iAoV1KZQTeNbGzLmPpkxu9abD44l/NyGev1jkamnXK+p685DJ/EZPyAoNRMorqDFuXsBos2Npo0wQkDBbdu5w7OjZXXbDdGI6xINnHzUZhlcbKvT4gH9paW0TrbImd8EQXikFWb1lm9541ZFjf2w7+ZS9o0ZDBIBVCZp2Xg3CWwdY2iFjygeTLl9NQ9d8JaNB+GShw4bHclzTkvwM3aJ6L5QvepJ/ODXN6xJf15MK1/si5W3vhzxL92JvssruEw0ljurMp6iaH68gve/olX4ZACeTKVSwp95TFP3IKJQWtdB8LCPyc+85Uq32ELqfgkeUKXxsi/LnVfTHBJsgZothRgBCVPJ1eIosTosbzpygpCLQgnb4UNisxeeUk0cQdokXIXF3lkdCqnL+dhtgJOw7aw5IPPddp6PiGsKxcrZNIBkPUIZAeDaxnJokIAHUshh9gz2VTrYZm7+z9pglh+EdtZSeVPusbXijsoHNQXjt6c1X0KyHvavoYd9/2+FdVVQHiwy/zmQ3c16nqXm4PpwZGA1YJFibeeMAc="
 
 matrix:
   include:
@@ -10,7 +7,10 @@ matrix:
   - language: python
     python:
     - "3.8"
-   
+    env:
+    - DOCKER_USER=sabattle
+    - secure: "emr0hzS7lb8FPcp5SQdtkl3X7LHWS75eCpgbjWfoGvnSfzb5BFMvg3+3bFaD4SlCUlmAavSoOyamixieEXIc5I+w5hM8t7AbXjFkgqysvSyNiVhWkk3EhUqyfdlYFXXym0B3uEuj0iAoV1KZQTeNbGzLmPpkxu9abD44l/NyGev1jkamnXK+p685DJ/EZPyAoNRMorqDFuXsBos2Npo0wQkDBbdu5w7OjZXXbDdGI6xINnHzUZhlcbKvT4gH9paW0TrbImd8EQXikFWb1lm9541ZFjf2w7+ZS9o0ZDBIBVCZp2Xg3CWwdY2iFjygeTLl9NQ9d8JaNB+GShw4bHclzTkvwM3aJ6L5QvepJ/ODXN6xJf15MK1/si5W3vhzxL92JvssruEw0ljurMp6iaH68gve/olX4ZACeTKVSwp95TFP3IKJQWtdB8LCPyc+85Uq32ELqfgkeUKXxsi/LnVfTHBJsgZothRgBCVPJ1eIosTosbzpygpCLQgnb4UNisxeeUk0cQdokXIXF3lkdCqnL+dhtgJOw7aw5IPPddp6PiGsKxcrZNIBkPUIZAeDaxnJokIAHUshh9gz2VTrYZm7+z9pglh+EdtZSeVPusbXijsoHNQXjt6c1X0KyHvavoYd9/2+FdVVQHiwy/zmQ3c16nqXm4PpwZGA1YJFibeeMAc="
+
     before_install:
     - cd python-app
 
@@ -34,6 +34,9 @@ matrix:
         all_branches: true
 
   - language: node_js
+    env:
+    - DOCKER_USER=sabattle
+    - secure: "emr0hzS7lb8FPcp5SQdtkl3X7LHWS75eCpgbjWfoGvnSfzb5BFMvg3+3bFaD4SlCUlmAavSoOyamixieEXIc5I+w5hM8t7AbXjFkgqysvSyNiVhWkk3EhUqyfdlYFXXym0B3uEuj0iAoV1KZQTeNbGzLmPpkxu9abD44l/NyGev1jkamnXK+p685DJ/EZPyAoNRMorqDFuXsBos2Npo0wQkDBbdu5w7OjZXXbDdGI6xINnHzUZhlcbKvT4gH9paW0TrbImd8EQXikFWb1lm9541ZFjf2w7+ZS9o0ZDBIBVCZp2Xg3CWwdY2iFjygeTLl9NQ9d8JaNB+GShw4bHclzTkvwM3aJ6L5QvepJ/ODXN6xJf15MK1/si5W3vhzxL92JvssruEw0ljurMp6iaH68gve/olX4ZACeTKVSwp95TFP3IKJQWtdB8LCPyc+85Uq32ELqfgkeUKXxsi/LnVfTHBJsgZothRgBCVPJ1eIosTosbzpygpCLQgnb4UNisxeeUk0cQdokXIXF3lkdCqnL+dhtgJOw7aw5IPPddp6PiGsKxcrZNIBkPUIZAeDaxnJokIAHUshh9gz2VTrYZm7+z9pglh+EdtZSeVPusbXijsoHNQXjt6c1X0KyHvavoYd9/2+FdVVQHiwy/zmQ3c16nqXm4PpwZGA1YJFibeeMAc="
 
     before_install:
     - cd node-app
