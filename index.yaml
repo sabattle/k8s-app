@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  k8s-app-chart:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2020-11-17T16:48:35.47756-05:00"
+    description: A Helm chart for Kubernetes
+    digest: a513da8bd10632d75cd7a515459b0cc5aeb0a81d2578d11fed47342fae21c04d
+    name: k8s-app-chart
+    type: application
+    urls:
+    - https://sabattle.github.io/k8s-app/k8s-app-chart-0.1.0.tgz
+    version: 0.1.0
+generated: "2020-11-17T16:48:35.477073-05:00"
