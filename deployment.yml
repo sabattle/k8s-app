@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8s-app-deployment
+  labels:
+    app: k8s-app
+spec:
+  selector:
+    matchLabels:
+      app: k8s-app
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: k8s-app
+    spec:
+      containers:
+      - name: python-app
+        image: sabattle/python-app:latest
+        ports:
+        - containerPort: 5000
+      - name: node-app
+        image: sabattle/node-app:latest
+        ports:
+        - containerPort: 8000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: python-service
+spec:
+  selector:
+    app: python-app
+  ports:
+    - protocol: TCP
+      port: 5000
+      targetPort: 5000
+      nodePort: 30005  
+  type: NodePort
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: node-service
+spec:
+  selector:
+    app: node-app
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 8000
+      nodePort: 30008  
+  type: NodePort
