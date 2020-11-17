@@ -1,54 +1,55 @@
 services:
-  - docker
+- docker
 
 matrix:
   include:
 
-    # python app
-    - language: python
-      python:
-        - "3.8"
-
-      before_install:
-        - cd python-app
-
-      install:
-        - pip3 install -r requirements.txt
-
-      script:
-        - docker build -t $DOCKER_USER/python-app:latest python-app/
-        - docker images
-
-      after_success:
-        - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
-        - docker push $DOCKER_USER/python-app:latest
-
-      deploy:
-        provider: pypi
-        username:
-        password:
-          secure:
+  - language: python
+    python:
+    - '3.8'
+    env:
+    - DOCKER_USER=sabattle
+      secure: EGsXTBEG3tWvQ00mZjliGzgnGiZCakVXJywc4FVkgzcK4Js6Mqe8RLA/87KkRmV1ibM6Qg5SB12+mcZCJs+h/hwkgFL3UfnfK/u39gnXPOl4eWVsTPRvnChlFIeYeC68r2WFrPBfyRJEWiK/Pcm3vr6/AmaKzaFLtega/tZP2TtB4Kps5hsjBf+B3FicP7sWyJzZSXNWfwaOFMl0lQ35lAqo4aVNSO+T/JPNOJs7ADrW2WL3SRo0fH2VFl7fxY+wlDufs2sFL8YphMt9wyfbyHlhw/qCAdEDhiWJiShhK+KixWYz0BtJedxOPF9Gs0U8nikv73T5fFaSOD7FielgUo+FpxveJXjPkN3SwJW0Iaj1ue63a8CS1nuESzK2OY/pnu5kXoftV+l+CnFdcFNSWeDQlZ+rbVrEtWi5S0a6d4xxPfDdxiSehhkd3NC8KkVM81KDjWff7qZtE0onNozuNIrL+eTMSzMu34uX48xKJpXWt5nZWJQzrsO2Ob3XOVkX42t7rD0JRylnzzYxOxKUoYlhDDZiJ3EY/EJ7xKI7N3aIDJ/CBUQ4jQDiQaatjJHX/TCSL/UilN6MVNqcYSWQFJJV98OeqGidKLA13BZ6pW1MFrsjGv4jCz7tBAHCGu1wgIjd6sG9b5gXk7aFWO6VaARB0EurIHrdSFjUx+ipGFY=
     
-    # node app
-    - language: node_js
+    before_install:
+    - cd python-app
 
-      before_install:
-        - cd node-app
-      
-      install:
-        - npm install
-      
-      script:
-        - docker build -t $DOCKER_USER/node-app:latest python-app/
-        - docker images
+    install:
+    - pip3 install -r python-app/requirements.txt
 
-      after_success:
-        - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
-        - docker push $DOCKER_USER/python-app:latest
+    script:
+    - docker build -t $DOCKER_USER/python-app:latest python-app/
+    - docker images
 
-      deploy:
-        provider: npm
-        email:
-        api_key:
-      
-    
+    after_success:
+    - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+    - docker push $DOCKER_USER/python-app:latest
+
+    deploy:
+      provider: pypi
+      username: "__token__"
+      password:
+        secure: "TxhqBlzUvybi2x2WOCBNlztPtLfw/D4/vXzyCcJFd5Cg6NuCMeQX+t+3U1tg/k2UVNxr4S3Fgo81VqMr9Ge08iONa8LN1Wj1pQb7m6nGRpt7Li3X+4DxYeDU3hjRTOBav2Iyzs1MwQcbAP169qn+on+8Y+uhX7/yjMfNLTKtMbf9JM4t+kIOmLWM5oXXAOetvDpUJ1Duf2U+ysd+8jdW9CROq8xw8jQFbP1hOFMMuNz/FXb18Y+wHotGIBCea/Xeu6uAJN0WUIxDnv5jG2GuobR+FcEr0/R0TwfOCgDknEcwBQzhhmh5Svp0k2zWpqx2hGj0c4ohKvsdxbLForX0SppWGkcO/8zCQ3bQh1G4yWL+0REqCXjMcTvHN201llVNmJvGE8cn/EoZLPLwBVhkVgKTwg+ilphbDjVAwN3spKCqOxX6rQySoMsYbVBSjsiahDNJ5Ng7NryR9grI/BcjXtfuEgzXWEUoquVFG2+k9cydjBNyMea9CfsVm7UVduT4+qN7h9sKbPCN9dvITNTmf75CFpS4BboYYZ5nFCMq4yiTJEzwJdnmbAq8PN/uHNMmSjFZZR0Qx4ZxtkT+oOJwYAoBpf3AYN75eihq5YxFPdyxr1ePoyOgbFEVozrdkSPJ1lNJys8MNdN991J5D21A7zKj0YwevL3AOxr+8vkcqxA="
+
+  - language: node_js
+
+    before_install:
+    - cd node-app
+
+    install:
+    - npm install
+
+    script:
+    - docker build -t $DOCKER_USER/node-app:latest python-app/
+    - docker images
+
+    after_success:
+    - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+    - docker push $DOCKER_USER/python-app:latest
+
+    deploy:
+      provider: npm
+      email: sabattle@eckerd.edu
+      api_key:
+        secure: "R1iy8iB0fnf/I8LraDix23EBj6h9dPmgKZwkKqHR/g7M7eAvzwbXg8cOsdXBttHS45HjEw/BP/XkSwjGGYhtabD+/kVyq/YmfGnCguNXZGWauoQhgGnBJtZ5asqNGzUsNYk9i4RvBaYyhTIhSCqXBStyicZvEOoSluJNaoCEk40wyyGPchNrdCfu488nEUyfnbJZZ3OiPzucfjkwpBqy/tTQJEWxJ4GkZr7yDN1Z2QDQg7UnQokMgs4GPd+q25s0Y0T69yolEJtxb/BmHfuUtMluVH54/DelhuaP6fzEm/xdHr8pvw2o2AuKcpeXYQ01+3872bplcyvcxsXwS48YtlFZnPSP17wEk4fD84DiBnwfASd2TucC2rduiBrEudr6Gt/ESIReoVSvACwWGJU+xhMxeRGw/c1eWOA5PZIK+66c+gX5XYpM2UtqJMEUafOJhqIidQErnzPGEK+HJR82/RUBz7mEiJ/r3WV6VlTHgr1gJzctLmG3/uX45z3RdDMpIkXsPNcLSXUUfacYuVkC90mkQdpwNlJvc1VS486Rb2zbYOjr5kmymHvZdjdUYMbSv4tbtCV6D6sWxpykKgLW+q3yncBPV+6SaRv4r2KcN8DZb7KVyhu6v1Q0PG1BemsS2t4QsqdYMqDjMIiQ4Sjawlf0b4VfolW8ipEkyzfmAX0="
+
