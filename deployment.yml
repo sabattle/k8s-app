@@ -30,7 +30,7 @@ metadata:
   name: python-service
 spec:
   selector:
-    app: python-app
+    app: k8s-app
   ports:
     - protocol: TCP
       port: 5000
@@ -44,7 +44,7 @@ metadata:
   name: node-service
 spec:
   selector:
-    app: node-app
+    app: k8s-app
   ports:
     - protocol: TCP
       port: 8000
