@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8s-app-deployment
+  labels:
+    app: k8s-app
+spec:
+  selector:
+    matchLabels:
+      app: k8s-app
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: k8s-app
+    spec:
+      containers:
+      - name: python-app
+        image: sabattle/python-app:latest
+        ports:
+        - containerPort: 5000
+      - name: node-app
+        image: sabattle/node-app:latest
+        ports:
+        - containerPort: 8000
